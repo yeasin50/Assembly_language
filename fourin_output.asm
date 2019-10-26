@@ -1,5 +1,3 @@
-; need fix
-
 .MODEL SMALL
 .STACK 100H
 .CODE
@@ -10,14 +8,14 @@ MAIN PROC
    
     INT 21H    
     MOV BL, AL ; input1 using BL
-    INT 21H   
    
-    MOV BH, AL; input2 using BH
     INT 21H   
+    MOV BH, AL; input2 using BH
     
+    INT 21H   
     MOV CL, AL  ; input3 using BL  
-    INT 21H
-    
+   
+    INT 21H 
     MOV CH, AL ;    INPUT 4
     
     
