@@ -1,0 +1,21 @@
+; BREAK WHEN SPACE ENTERED
+.MODEL SMALL
+.STACK 100H
+.CODE
+
+MAIN PROC 
+    
+    L:  
+        MOV AH, 1
+        INT 21H 
+        CMP AL, " "
+        JE EXIT  
+        INC CL
+        JMP L   
+        
+    EXIT: 
+        MOV AH, 4CH
+        INT 21H
+        MAIN ENDP  
+
+END MAIN
