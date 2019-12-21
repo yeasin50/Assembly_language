@@ -1,0 +1,22 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+
+MAIN PROC
+  
+   Repeat:
+    MOV AH,1 
+    INT 21H
+    CMP AL, 'Y'
+    JE EXIT
+    Jmp Repeat
+    
+    
+  EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+    
+    

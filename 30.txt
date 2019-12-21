@@ -1,0 +1,50 @@
+INCLUDE 'EMU8086.INC'
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+
+MAIN PROC
+  
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    
+    MOV AH,2
+    MOV DL,0AH
+    INT 21H
+    MOV DL,0DH
+    INT 21H  
+      
+    CMP BL , '0'
+    JGE NUM
+    
+    NUM:
+     CMP BL, '9'
+     JLE NUMBER
+     
+   cmp bl, 'A'
+   JGE CHARL
+   
+   CHARL:
+   CMP BL, 'Z'
+   JLE CHAR
+   JMP EXIT
+   
+  
+    
+   CHAR:
+   
+   PRINTN "It is an alphanumeric character" 
+    JMP EXIT
+    
+   NUMBER:
+       PRINTN "It is a number." 
+   
+   EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+    
+    
