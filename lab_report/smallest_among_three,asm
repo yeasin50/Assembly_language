@@ -1,0 +1,58 @@
+.MODEL SMALL    
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC 
+    
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    INT 21H
+    MOV BH,AL
+    INT 21H
+    MOV CL,AL
+     
+    MOV AH,2
+    MOV DL,10
+    INT 21H       
+    MOV DL,13
+    INT 21H
+    
+    CMP BL,BH
+    JL BL_L
+    JGE BH_L
+    
+    BL_L:
+    CMP BL,CL
+    JL PRINT_BL
+    JG PRINT_CL
+    JMP EXIT 
+    
+    BH_L:
+       CMP BH, CL
+       JL PRINT_BH
+       JG PRINT_CL
+       JMP EXIT
+     
+    PRINT_BL:
+    MOV AH,2
+    MOV DL,BL
+    INT 21H
+    JMP EXIT
+        
+    PRINT_BH:
+    MOV AH,2
+    MOV DL,BH
+    INT 21H 
+    JMP EXIT
+        
+    PRINT_CL:
+    MOV AH,2
+    MOV DL,CL
+    INT 21H
+    
+    EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
